@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapMaker", "MapMaker\MapMaker.csproj", "{B7EA0F38-7119-4835-8D33-875C35066B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "D:\SSD Dropbox\Dropbox\VS Projects\Helpers\Helpers.csproj", "{92086FDA-F676-48B9-9D9F-0581E3B61225}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapMakerConsole", "MapMakerConsole\MapMakerConsole.csproj", "{44A61D57-4EF2-4055-9D08-C18DEBB6F615}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7EA0F38-7119-4835-8D33-875C35066B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7EA0F38-7119-4835-8D33-875C35066B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7EA0F38-7119-4835-8D33-875C35066B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7EA0F38-7119-4835-8D33-875C35066B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92086FDA-F676-48B9-9D9F-0581E3B61225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92086FDA-F676-48B9-9D9F-0581E3B61225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92086FDA-F676-48B9-9D9F-0581E3B61225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92086FDA-F676-48B9-9D9F-0581E3B61225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44A61D57-4EF2-4055-9D08-C18DEBB6F615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A61D57-4EF2-4055-9D08-C18DEBB6F615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44A61D57-4EF2-4055-9D08-C18DEBB6F615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44A61D57-4EF2-4055-9D08-C18DEBB6F615}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
