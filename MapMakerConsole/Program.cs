@@ -14,7 +14,7 @@ namespace MapMakerConsole
     {
         static void Main(string[] args)
         {
-            var Map = new MapBuilder(4, 79, 30);
+            var Map = new MapBuilder(4, 30, 60);
             Map.PrintToConsole();
             File.WriteAllText(FileHelpers.IterFileName("map_{0}.txt"), Map.RenderAsString());
             Console.ReadLine();

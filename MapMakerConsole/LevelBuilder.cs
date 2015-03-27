@@ -10,9 +10,7 @@ namespace MapMakerConsole
         private readonly Random rand = new Random();
         private List<Func<bool[][], bool[][]>> mapEditors = new List<Func<bool[][], bool[][]>>();
         private bool[][] map; // true = wall, false = floor
-        private string curRender;
-        private int Width;
-        private int Height;
+        public readonly int Width, Height;
         private const double INIT_COVERAGE = 0.45;
         private const int SMOOTH_WINDOW_SIZE = 3;
         private const int FILL_WINDOW_SIZE = 5;
@@ -41,6 +39,7 @@ namespace MapMakerConsole
         public bool this[int row, int col]
         {
             get { return map.BoundedGet(row).BoundedGet(col); }
+            set { map[row][col] = value; }
         }
 
         private bool Kernel1(bool[][] workingMap, int row, int col)
@@ -151,18 +150,18 @@ namespace MapMakerConsole
             var retMap = startingMap.Select(bs => bs.Select(val => val).ToArray()).ToArray();
 
             // Figure out how big to make the hole (5% or the map's width, or 3 cells wide, whichever is bigger
-            int OpeningWidth = Math.Max(MIN_ENT_EXIT_WIDTH, (int) (Width*ENT_EXIT_WIDTH_PERCENTAGE));
-            int Left = Width/2 - OpeningWidth/2;
-            int Right = Left + OpeningWidth;
+            int OpeningHeight = Math.Max(MIN_ENT_EXIT_WIDTH, (int) (Height*ENT_EXIT_WIDTH_PERCENTAGE));
+            int Top = Height/2 - OpeningHeight/2;
+            int Bottom = Top + OpeningHeight;
 
             var Dig = new Action<int, int, int>((lower, upper, dir) =>
             {
                 bool NeedToKeepDigging = true;
                 // Needs to be set to true if any one of the dug squares started as false (wall)
-                for (int row = lower; row*dir < upper*dir && NeedToKeepDigging; row += dir)
+                for (int col = lower; col*dir < upper*dir && NeedToKeepDigging; col += dir)
                 {
                     NeedToKeepDigging = false;
-                    for (int col = Left; col <= Right; col++)
+                    for (int row = Top; row < Bottom; row++)
                     {
                         NeedToKeepDigging |= retMap[row][col];
                         retMap[row][col] = false;
@@ -170,8 +169,8 @@ namespace MapMakerConsole
                 }
             });
 
-            Dig(0, Height, 1);
-            Dig(Height - 1, 0 - 1, -1);
+            Dig(0, Width, 1);
+            Dig(Width - 1, 0 - 1, -1);
 
             return retMap;
         }
@@ -182,15 +181,15 @@ namespace MapMakerConsole
                 map = editor(map);
         }
 
-        public string RenderAsString()
+        public string[] RenderAsStrings()
         {
-            return "\r\n".Combine(map.Select((b_row, row) => "".Combine(b_row.Select(c => c ? "#" : ".").ToArray())).ToArray());
+            return map.Select((b_row, row) => "".Combine(b_row.Select(c => c ? "#" : ".").ToArray())).ToArray();
         }
 
         public void PrintToConsole()
         {
             //Console.SetCursorPosition(0, 0);
-            Console.WriteLine(RenderAsString());
+            Console.WriteLine("\r\n".Combine(RenderAsStrings()));
         }
 
         private void GenerateMap()
@@ -215,7 +214,6 @@ namespace MapMakerConsole
                 }
                 catch (Exception ex)
                 {
-                    RenderAsString();
                     PrintToConsole();
                     Console.WriteLine("Error: " + ex.Message);
                     return;
